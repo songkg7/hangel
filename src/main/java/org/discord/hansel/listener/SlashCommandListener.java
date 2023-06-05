@@ -4,8 +4,8 @@ import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
 import org.discord.hansel.command.SlashCommand;
 import org.springframework.stereotype.Component;
-import reactor.core.publisher.Mono;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.Collection;
 import java.util.List;
@@ -17,10 +17,8 @@ public class SlashCommandListener {
 
     public SlashCommandListener(List<SlashCommand> slashCommands, GatewayDiscordClient client) {
         commands = slashCommands;
-
         client.on(ChatInputInteractionEvent.class, this::handle).subscribe();
     }
-
 
     public Mono<Void> handle(ChatInputInteractionEvent event) {
 

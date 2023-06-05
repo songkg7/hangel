@@ -1,2 +1,5 @@
 discord:
   bot-token: ${DISCORD_BOT_TOKEN}
+
+google:
+  spreadsheet-url: ${GOOGLE_SPREADSHEET_URL:https://google.com}

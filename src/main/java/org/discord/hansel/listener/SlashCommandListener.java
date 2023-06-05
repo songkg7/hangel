@@ -1,8 +1,8 @@
-package org.discord.hangel.listener;
+package org.discord.hansel.listener;
 
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
-import org.discord.hangel.command.SlashCommand;
+import org.discord.hansel.command.SlashCommand;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.Flux;

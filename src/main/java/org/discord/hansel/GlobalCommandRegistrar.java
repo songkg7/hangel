@@ -1,4 +1,4 @@
-package org.discord.hangel;
+package org.discord.hansel;
 
 import discord4j.common.JacksonResources;
 import discord4j.rest.RestClient;

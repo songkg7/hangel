@@ -1,4 +1,4 @@
-package org.discord.hangel.config;
+package org.discord.hansel.config;
 
 import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;

@@ -1,4 +1,4 @@
-package org.discord.hangel.command;
+package org.discord.hansel.command;
 
 import discord4j.core.object.command.ApplicationCommandInteractionOptionValue;
 import discord4j.core.object.command.ApplicationCommandInteractionOption;

@@ -1,13 +1,13 @@
-package org.discord.hangel;
+package org.discord.hansel;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HangelApp {
+public class HanselApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(HangelApp.class, args);
+        SpringApplication.run(HanselApp.class, args);
     }
 
 }

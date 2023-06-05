@@ -1,4 +1,4 @@
-package org.discord.hangel.command;
+package org.discord.hansel.command;
 
 import org.springframework.stereotype.Component;
 import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;

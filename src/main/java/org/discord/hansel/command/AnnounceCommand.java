@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 @Component
 public class AnnounceCommand implements SlashCommand {
 
-    @Value("${google.spreadsheet-url}")
+    @Value("${google.spreadsheet.url}")
     public String url;
 
     @Override

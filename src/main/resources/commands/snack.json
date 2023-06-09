@@ -1,22 +1,43 @@
 {
   "name": "snack",
   "description": "Write a snack name",
+  "description_localizations": {
+    "ko": "간식을 신청합니다"
+  },
   "options": [
     {
       "name": "name",
+      "name_localizations": {
+        "ko": "이름"
+      },
       "description": "User name",
+      "description_localizations": {
+        "ko": "사용자 이름을 입력해주세요"
+      },
       "type": 3,
       "required": true
     },
     {
       "name": "snack",
+      "name_localizations": {
+        "ko": "상표명"
+      },
       "description": "Your snack",
+      "description_localizations": {
+        "ko": "구매할 간식의 이름을 입력해주세요"
+      },
       "type": 3,
       "required": true
     },
     {
       "name": "link",
+      "name_localizations": {
+        "ko": "링크"
+      },
       "description": "Snack purchase link, like Coupang",
+      "description_localizations": {
+        "ko": "쿠팡 구매 링크를 입력해주세요"
+      },
       "type": 3,
       "required": true
     }

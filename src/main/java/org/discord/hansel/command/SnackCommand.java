@@ -24,6 +24,8 @@ public class SnackCommand implements SlashCommand {
 
     private final SheetsService sheetsService;
 
+    public record SnackRequest(String name, String snack, String link) {}
+
     @Override
     public String getName() {
         return "snack";
@@ -33,10 +35,10 @@ public class SnackCommand implements SlashCommand {
     public Mono<Void> handle(ChatInputInteractionEvent event) {
         String snack = getOption(event, "snack");
         String link = getOption(event, "link");
-        String name = getOption(event, "name");
+        String username = getOption(event, "username");
 
         try {
-            sheetsService.updateSnack(spreadsheetId, name, snack, link);
+            sheetsService.updateSnack(spreadsheetId, new SnackRequest(username, snack, link));
         } catch (IOException e) {
             log.error("Error while updating sheets", e);
             throw new RuntimeException(e);

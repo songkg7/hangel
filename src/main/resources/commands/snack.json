@@ -6,7 +6,7 @@
   },
   "options": [
     {
-      "name": "name",
+      "name": "username",
       "name_localizations": {
         "ko": "이름"
       },

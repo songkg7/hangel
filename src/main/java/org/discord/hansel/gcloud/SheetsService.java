@@ -5,6 +5,7 @@ import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.model.ValueRange;
 import lombok.extern.slf4j.Slf4j;
+import org.discord.hansel.command.SnackCommand;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -30,8 +31,12 @@ public class SheetsService {
         }
     }
 
-    public void updateSnack(String spreadsheetId, String username, String snack, String link) throws IOException {
-        List<List<Object>> values = List.of(List.of(LocalDate.now().toString(), username, snack, link));
-        getSheets().spreadsheets().values().append(spreadsheetId, START_RANGE, new ValueRange().setValues(values)).setValueInputOption("USER_ENTERED").execute();
+    public void updateSnack(String spreadsheetId, SnackCommand.SnackRequest snackRequest) throws IOException {
+        List<List<Object>> values = List.of(List.of(LocalDate.now().toString(), snackRequest.name(), snackRequest.snack(), snackRequest.link()));
+        getSheets().spreadsheets()
+                .values()
+                .append(spreadsheetId, START_RANGE, new ValueRange().setValues(values))
+                .setValueInputOption("USER_ENTERED")
+                .execute();
     }
 }

@@ -3,6 +3,7 @@ package org.discord.hansel.command;
 import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
 import discord4j.core.object.command.ApplicationCommandInteractionOption;
 import discord4j.core.object.command.ApplicationCommandInteractionOptionValue;
+import discord4j.core.object.entity.User;
 import discord4j.core.spec.EmbedCreateSpec;
 import discord4j.rest.util.Color;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +36,8 @@ public class SnackCommand implements SlashCommand {
     public Mono<Void> handle(ChatInputInteractionEvent event) {
         String snack = getOption(event, "snack");
         String link = getOption(event, "link");
-        String username = getOption(event, "username");
+        User user = event.getInteraction().getUser();
+        String username = user.getUsername();
 
         try {
             sheetsService.updateSnack(spreadsheetId, new SnackRequest(username, snack, link));

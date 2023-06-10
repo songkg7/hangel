@@ -19,7 +19,7 @@ public class DiscordClientConfig {
     public GatewayDiscordClient gatewayDiscordClient() {
         return DiscordClientBuilder.create(botToken).build()
                 .gateway()
-                .setInitialPresence(ignore -> ClientPresence.online(ClientActivity.playing("Shopping")))
+                .setInitialPresence(ignore -> ClientPresence.online(ClientActivity.listening("/snack")))
                 .login()
                 .block();
     }

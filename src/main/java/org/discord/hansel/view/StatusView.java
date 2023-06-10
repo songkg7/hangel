@@ -21,9 +21,14 @@ public final class StatusView {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("간식 신청 목록").append("\n");
-        for (List<Object> row : values) {
-            log.info("{}", row);
-            sb.append(row.get(0)).append(" ").append(row.get(1)).append(" ").append(row.get(2)).append(" ").append(row.get(4)).append("\n");
+        List<List<Object>> refinedValues = values.stream()
+                .filter(row -> row.size() == 5)
+                .toList();
+        for (List<Object> row : refinedValues) {
+            Object date = row.get(1);
+            Object name = row.get(2);
+            Object snackName = row.get(3);
+            sb.append(date).append(" ").append(name).append(" ").append(snackName).append("\n");
         }
         return sb.toString();
     }

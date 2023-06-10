@@ -30,7 +30,11 @@ public class StatusCommand implements SlashCommand {
     @Override
     public Mono<Void> handle(ChatInputInteractionEvent event) {
         try {
-            ValueRange sheet = sheetsService.getSheets().spreadsheets().values().get(spreadsheetId, "B289:F305").execute();
+            ValueRange sheet = sheetsService.getSheets()
+                    .spreadsheets()
+                    .values()
+                    .get(spreadsheetId, "시트1")
+                    .execute();
             return event.reply()
                     .withEphemeral(true)
                     .withContent(StatusView.from(sheet.getValues()).toString());

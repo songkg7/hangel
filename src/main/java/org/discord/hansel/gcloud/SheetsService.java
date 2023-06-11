@@ -31,6 +31,7 @@ public class SheetsService {
         }
     }
 
+    // I think... It doesn't seem like an object-oriented location.
     public void updateSnack(String spreadsheetId, SnackCommand.SnackRequest snackRequest) throws IOException {
         List<List<Object>> values = List.of(List.of(LocalDate.now().toString(), snackRequest.name(), snackRequest.snack(), snackRequest.link()));
         getSheets().spreadsheets()

@@ -11,6 +11,8 @@
 - Bot 설정을 관리자가 수정 가능하게
   - google speadsheet url
   - customize start range
+- 구매 상태 변경시 신청한 사람에게 DM 발송하기
+  - empty -> complete only
 
 ## 개략적 설계
 

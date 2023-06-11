@@ -8,6 +8,9 @@
 - `/status` 명령을 통해 현재 신청된 간식 목록 가져오기
 - 매달 정해진 날짜에 공지 채널을 통해 멤버들에게 알림 주기
 - Optional. 즐겨찾는 간식 목록 제공
+- Bot 설정을 관리자가 수정 가능하게
+  - google speadsheet url
+  - customize start range
 
 ## 개략적 설계
 

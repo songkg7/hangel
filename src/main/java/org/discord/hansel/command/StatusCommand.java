@@ -17,6 +17,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class StatusCommand implements SlashCommand {
 
+    private static final String RANGE = "시트1";
     @Value("${google.spreadsheet.id}")
     private String spreadsheetId;
 
@@ -33,14 +34,15 @@ public class StatusCommand implements SlashCommand {
             ValueRange sheet = sheetsService.getSheets()
                     .spreadsheets()
                     .values()
-                    .get(spreadsheetId, "시트1")
+                    .get(spreadsheetId, RANGE)
                     .execute();
             return event.reply()
                     .withEphemeral(true)
                     .withContent(StatusView.from(sheet.getValues()).toString());
         } catch (IOException e) {
             log.error("Error while getting sheets", e);
-            throw new RuntimeException(e);
+            return event.reply("오류가 발생했어요! 관리자에게 문의해주세요.")
+                    .withEphemeral(true);
         }
     }
 }

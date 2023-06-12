@@ -58,13 +58,13 @@ public class SnackCommand implements SlashCommand {
                         .addField("link", link, true)
                         .color(user.getAccentColor().orElse(Color.DISCORD_WHITE))
                         .description(snack)
-                        .title("간식 신청 완료!")
+                        .title("Snack Request")
                         .url(link)
                         .build()
                 )
                 .withEphemeral(false)
                 .withAllowedMentions(AllowedMentions.builder().allowUser(user.getId()).build())
-                .withContent("@" + username + "님이 간식을 신청하셨어요!");
+                .withContent(user.getMention() + " 님이 간식을 신청하셨어요!");
     }
 
     private static String getOption(ChatInputInteractionEvent event, String link) {

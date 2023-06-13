@@ -1,0 +1,12 @@
+{
+  "name": "snack-search",
+  "description": "Search",
+  "options": [
+    {
+      "name": "snack-name",
+      "description": "Name of the snack",
+      "required": true,
+      "type": 3
+    }
+  ]
+}

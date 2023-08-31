@@ -11,12 +11,14 @@ import discord4j.rest.util.AllowedMentions;
 import discord4j.rest.util.Color;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.discord.hansel.CoupangUrlParser;
 import org.discord.hansel.gcloud.SheetsService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -42,29 +44,35 @@ public class SnackCommand implements SlashCommand {
 
     @Override
     public Mono<Void> handle(ChatInputInteractionEvent event) {
-        String snack = getOption(event, "snack");
         String link = getOption(event, "link");
-        User user = event.getInteraction().getUser();
-        String username = user.getUsername();
+        try {
+            String snack = CoupangUrlParser.parseQuery(link);
 
-        String updatedRange = updateSnack(new SnackRequest(username, snack, link));
-        if (updatedRange == null) {
-            return event.reply("오류가 발생했어요! 관리자에게 문의해주세요.")
+            User user = event.getInteraction().getUser();
+            String username = user.getUsername();
+
+            String updatedRange = updateSnack(new SnackRequest(username, snack, link));
+            if (updatedRange == null) {
+                return event.reply("오류가 발생했어요! 관리자에게 문의해주세요.")
+                        .withEphemeral(true);
+            }
+
+            return event.reply()
+                    .withEmbeds(EmbedCreateSpec.builder()
+                            .addField("link", link, true)
+                            .color(user.getAccentColor().orElse(Color.DISCORD_WHITE))
+                            .description(snack)
+                            .title("Snack Request")
+                            .url(link)
+                            .build()
+                    )
+                    .withEphemeral(false)
+                    .withAllowedMentions(AllowedMentions.builder().allowUser(user.getId()).build())
+                    .withContent(user.getMention() + " 님이 간식을 신청하셨어요!");
+        } catch (URISyntaxException e) {
+            return event.reply("올바른 쿠팡 URL이 아닌 것 같아요! 다시 확인해주세요.")
                     .withEphemeral(true);
         }
-
-        return event.reply()
-                .withEmbeds(EmbedCreateSpec.builder()
-                        .addField("link", link, true)
-                        .color(user.getAccentColor().orElse(Color.DISCORD_WHITE))
-                        .description(snack)
-                        .title("Snack Request")
-                        .url(link)
-                        .build()
-                )
-                .withEphemeral(false)
-                .withAllowedMentions(AllowedMentions.builder().allowUser(user.getId()).build())
-                .withContent(user.getMention() + " 님이 간식을 신청하셨어요!");
     }
 
     private static String getOption(ChatInputInteractionEvent event, String link) {
